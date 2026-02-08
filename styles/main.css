@@ -1,0 +1,517 @@
+/* ===========================
+   GLOBAL STYLES & VARIABLES
+   =========================== */
+
+:root {
+    /* Bold Weed Theme Colors */
+    --cannabis-green: #4CAF50;
+    --cannabis-light: #81C784;
+    --cannabis-dark: #2E7D32;
+    --cannabis-accent: #66BB6A;
+
+    /* D&D Fantasy Colors */
+    --fantasy-purple: #9C27B0;
+    --fantasy-gold: #FFD700;
+    --fantasy-dark: #4A148C;
+
+    /* Base Colors */
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-accent: #0f3460;
+    --text-primary: #eee;
+    --text-secondary: #aaa;
+    --border-color: #333;
+
+    /* Pixel Art */
+    --pixel-border: 4px;
+    --pixel-shadow: 8px 8px 0 rgba(0, 0, 0, 0.5);
+
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 48px;
+    --spacing-xl: 72px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: #000;
+    color: var(--text-primary);
+    line-height: 1.8;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Cannabis Leaf Background Pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(76, 175, 80, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(76, 175, 80, 0.15) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+body::after {
+    content: '🍃';
+    position: fixed;
+    font-size: 200px;
+    opacity: 0.08;
+    top: 10%;
+    left: 5%;
+    z-index: 0;
+    pointer-events: none;
+    animation: floatLeaf 20s ease-in-out infinite;
+}
+
+@keyframes floatLeaf {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -20px) rotate(10deg); }
+    66% { transform: translate(-20px, 20px) rotate(-10deg); }
+}
+
+/* Add more floating leaves */
+.about-section::before,
+.content-section::before {
+    content: '🌿';
+    position: absolute;
+    font-size: 150px;
+    opacity: 0.06;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.about-section::before {
+    top: 20%;
+    right: 10%;
+    animation: floatLeaf 25s ease-in-out infinite reverse;
+}
+
+.content-section::before {
+    bottom: 10%;
+    left: 10%;
+    animation: floatLeaf 22s ease-in-out infinite;
+}
+
+/* Ensure content is above background */
+header, section > .container, footer {
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ===========================
+   TYPOGRAPHY
+   =========================== */
+
+.pixel-title {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    color: var(--cannabis-green);
+    text-shadow: 4px 4px 0 var(--fantasy-purple),
+                 8px 8px 0 rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.pixel-heading {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: var(--fantasy-gold);
+    text-shadow: 3px 3px 0 var(--cannabis-dark);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.pixel-text {
+    font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.section-title {
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--cannabis-green), var(--fantasy-purple));
+    margin: var(--spacing-sm) auto 0;
+}
+
+.highlight {
+    color: var(--cannabis-green);
+    text-shadow: 2px 2px 0 var(--cannabis-dark);
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+
+.pixel-header {
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: var(--pixel-border) solid var(--cannabis-green);
+    padding: var(--spacing-md) 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.pixel-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.pixel-nav {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+/* Glitch Effect for Title */
+.glitch {
+    position: relative;
+    animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+    0%, 90%, 100% {
+        transform: translate(0);
+    }
+    92%, 94%, 96%, 98% {
+        transform: translate(-2px, 2px);
+    }
+    93%, 95%, 97%, 99% {
+        transform: translate(2px, -2px);
+    }
+}
+
+/* ===========================
+   SECTIONS
+   =========================== */
+
+section {
+    padding: var(--spacing-xl) 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.game-section {
+    background: linear-gradient(180deg, #87CEEB 0%, #98D8E8 50%, #7EC850 100%);
+    position: relative;
+}
+
+.about-section {
+    background: #000;
+    border-top: var(--pixel-border) solid var(--cannabis-green);
+    min-height: auto;
+    padding: var(--spacing-lg) 0;
+}
+
+.content-section {
+    background: #000;
+    border-top: var(--pixel-border) solid var(--cannabis-green);
+}
+
+/* ===========================
+   ABOUT SECTION
+   =========================== */
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.about-image {
+    position: relative;
+}
+
+.pixelated-img {
+    width: 100%;
+    max-width: 300px;
+    border: var(--pixel-border) solid var(--cannabis-green);
+    box-shadow: var(--pixel-shadow);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    filter: contrast(1.1) saturate(1.2);
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.stat-item {
+    background: rgba(76, 175, 80, 0.1);
+    padding: var(--spacing-md);
+    border: 3px solid var(--cannabis-green);
+    text-align: center;
+    font-size: 0.7rem;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    background: rgba(76, 175, 80, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 30px rgba(76, 175, 80, 0.5);
+}
+
+.stat-icon {
+    display: block;
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===========================
+   CONTENT GRID
+   =========================== */
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.content-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(76, 175, 80, 0.4);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-title {
+    font-size: 1rem;
+    color: var(--fantasy-gold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-description {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.cannabis-theme {
+    background: linear-gradient(135deg, var(--cannabis-dark) 0%, var(--cannabis-green) 100%);
+    border-color: var(--cannabis-light);
+}
+
+.blog-posts {
+    width: 100%;
+    margin: var(--spacing-sm) 0;
+    font-size: 0.5rem;
+    text-align: left;
+}
+
+.blog-posts .loading {
+    color: var(--cannabis-green);
+    font-style: italic;
+}
+
+.blog-posts ul {
+    list-style: none;
+    padding: 0;
+}
+
+.blog-posts li {
+    padding: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    background: var(--bg-accent);
+    border-left: 3px solid var(--cannabis-green);
+}
+
+.blog-posts a {
+    color: var(--cannabis-light);
+    text-decoration: none;
+}
+
+.blog-posts a:hover {
+    color: var(--fantasy-gold);
+}
+
+.wraith-container {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.wraith-img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 20px var(--fantasy-purple));
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+
+.pixel-footer {
+    background: var(--bg-secondary);
+    border-top: var(--pixel-border) solid var(--cannabis-green);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.built-with {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+}
+
+.claude-link {
+    color: var(--fantasy-purple);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.claude-link:hover {
+    color: var(--fantasy-gold);
+}
+
+.cannabis-decorations {
+    display: flex;
+    gap: var(--spacing-md);
+    font-size: 1.5rem;
+    animation: sway 3s ease-in-out infinite;
+}
+
+.leaf {
+    display: inline-block;
+    animation: float 2s ease-in-out infinite;
+}
+
+.leaf:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.leaf:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 768px) {
+    :root {
+        --spacing-lg: 32px;
+        --spacing-xl: 48px;
+    }
+
+    section {
+        min-height: auto;
+        padding: var(--spacing-lg) 0;
+    }
+
+    .pixel-header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .pixelated-img {
+        margin: 0 auto;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .pixel-nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pixel-nav .pixel-btn {
+        flex: 1;
+        min-width: 80px;
+    }
+}
