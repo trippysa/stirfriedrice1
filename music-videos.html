@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07060b"><meta name="description" content="Watch music videos on Stir Fried Rice."><title>Music Videos | Stir Fried Rice</title><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="stylesheet" href="styles/music-videos.css"></head>
+<body><main class="anime-page"><header class="site-header"><a class="back" href="index.html">← BACK TO HOME</a><span class="brand">STIR FRIED RICE</span></header>
+<section class="intro"><p class="eyebrow">WATCH & LISTEN</p><h1>MUSIC VIDEOS</h1><p>Choose a music video to watch right here.</p></section>
+<section class="videos" aria-label="Choose a music video"><div class="strip" id="videoStrip">
+<button class="video active" type="button" data-video="1" aria-label="Play Uncontrollably" aria-pressed="true"><span class="video-art"><img src="https://i.ytimg.com/vi/f54TQuUQIiQ/hqdefault.jpg" alt="Uncontrollably thumbnail" loading="lazy"></span><span class="video-name">Uncontrollably</span></button>
+<button class="video" type="button" data-video="2" aria-label="Play Blaze - Minecraft" aria-pressed="false"><span class="video-art"><img src="https://i.ytimg.com/vi/GjrvV-_ersg/hqdefault.jpg" alt="Blaze - Minecraft thumbnail" loading="lazy"></span><span class="video-name">Blaze - Minecraft</span></button>
+<button class="video" type="button" data-video="3" aria-label="Play A Regular Guy" aria-pressed="false"><span class="video-art"><img src="https://i.ytimg.com/vi/98Z-gOLO9-Q/hqdefault.jpg" alt="A Regular Guy thumbnail" loading="lazy"></span><span class="video-name">A Regular Guy</span></button>
+<button class="video" type="button" data-video="4" aria-label="Play Just a Monster" aria-pressed="false"><span class="video-art"><img src="https://i.ytimg.com/vi/8K-9avxICBI/hqdefault.jpg" alt="Just a Monster thumbnail" loading="lazy"></span><span class="video-name">Just a Monster</span></button>
+<button class="video" type="button" data-video="5" aria-label="Play Let Me Out - Minecraft" aria-pressed="false"><span class="video-art"><img src="https://i.ytimg.com/vi/Ji58z1d3RsY/hqdefault.jpg" alt="Let Me Out - Minecraft thumbnail" loading="lazy"></span><span class="video-name">Let Me Out - Minecraft</span></button>
+<button class="video" type="button" data-video="6" aria-label="Play Full Moon" aria-pressed="false"><span class="video-art"><img src="https://i.ytimg.com/vi/jXJVgQsUl7s/hqdefault.jpg" alt="Full Moon thumbnail" loading="lazy"></span><span class="video-name">Full Moon</span></button>
+<button class="video" type="button" data-video="7" aria-label="Play Dangerous Love - Minecraft" aria-pressed="false"><span class="video-art"><img src="https://i.ytimg.com/vi/i-u0uFW5ka0/hqdefault.jpg" alt="Dangerous Love - Minecraft thumbnail" loading="lazy"></span><span class="video-name">Dangerous Love - Minecraft</span></button>
+<button class="video" type="button" data-video="8" aria-label="Play The Real Monster" aria-pressed="false"><span class="video-art"><img src="https://i.ytimg.com/vi/48eUZ3DtpJo/hqdefault.jpg" alt="The Real Monster thumbnail" loading="lazy"></span><span class="video-name">The Real Monster</span></button>
+<button class="video" type="button" data-video="9" aria-label="Play Strategic Planning Analyst" aria-pressed="false"><span class="video-art"><img src="https://i.ytimg.com/vi/f0UOSHMOcjI/hqdefault.jpg" alt="Strategic Planning Analyst thumbnail" loading="lazy"></span><span class="video-name">Strategic Planning Analyst</span></button>
+<button class="video" type="button" data-video="10" aria-label="Play Raid the Bastion - Minecraft" aria-pressed="false"><span class="video-art"><img src="https://i.ytimg.com/vi/k0MUGmgve74/hqdefault.jpg" alt="Raid the Bastion - Minecraft thumbnail" loading="lazy"></span><span class="video-name">Uncontrollably0</span></button>
+</div></section>
+<section class="viewer" aria-label="Music Video player"><div class="viewer-heading"><h2 id="playingTitle">Uncontrollably</h2><a href="https://www.youtube.com/watch?v=f54TQuUQIiQ" id="watchOnYouTube" target="_blank" rel="noopener noreferrer">View video on YouTube ↗</a></div><div class="video-frame"><iframe id="animePlayer" title="Stir Fried Rice music video player" src="https://www.youtube-nocookie.com/embed/f54TQuUQIiQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div><p class="note">Choose any video above to watch it here. Videos are listed in the order you provided.</p></section>
+</main><script>
+(function () {
+  const videoIds = ["f54TQuUQIiQ", "GjrvV-_ersg", "98Z-gOLO9-Q", "8K-9avxICBI", "Ji58z1d3RsY", "jXJVgQsUl7s", "i-u0uFW5ka0", "48eUZ3DtpJo", "f0UOSHMOcjI", "k0MUGmgve74"];
+  const videoTitles = ['Uncontrollably', 'Blaze - Minecraft', 'A Regular Guy', 'Just a Monster', 'Let Me Out - Minecraft', 'Full Moon', 'Dangerous Love - Minecraft', 'The Real Monster', 'Strategic Planning Analyst', 'Raid the Bastion - Minecraft'];
+  const player = document.getElementById('animePlayer');
+  const title = document.getElementById('playingTitle');
+  const buttons = document.querySelectorAll('[data-video]');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const number = Number(button.dataset.video);
+      const videoId = videoIds[number - 1];
+      if (!videoId) return;
+      buttons.forEach((b) => {
+        const active = b === button;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      title.textContent = videoTitles[number - 1];
+      player.src = 'https://www.youtube-nocookie.com/embed/' + videoId;
+      document.getElementById('watchOnYouTube').href = 'https://www.youtube.com/watch?v=' + videoId;
+    });
+  });
+})();
+</script></body></html>
